@@ -340,6 +340,8 @@ struct ContentView: View {
         HStack(spacing: 16) {
             if let document = session.document {
                 Text(session.viewport.zoom, format: .percent.precision(.fractionLength(0...1)))
+                    .animation(.default, value: session.viewport.zoom)
+                    .contentTransition(.numericText())
                     .frame(width: 62, alignment: .leading).accessibilityIdentifier("zoomStatus")
                 Text("\(document.width) × \(document.height) px").accessibilityIdentifier("canvasDimensions")
                 Text("sRGB · Transparent")
