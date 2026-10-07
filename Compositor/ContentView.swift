@@ -117,11 +117,14 @@ struct ContentView: View {
             }
             if !session.canvasOnly {
                 Divider()
-                // Keeps its own height however short the window gets; the tools scroll instead.
-                statusBar.fixedSize(horizontal: false, vertical: true)
-                    .modifier(WidthReader(width: $windowWidth))
+                if session.showsStatusBar {
+                    // Keeps its own height however short the window gets; the tools scroll instead.
+                    statusBar.fixedSize(horizontal: false, vertical: true)
+                        .modifier(WidthReader(width: $windowWidth))
+                }
             }
         }
+        .animation(.default.speed(2.0), value: session.showsStatusBar)
     }
 
     // Split again for 1.1: the chain outgrew the type checker once more.

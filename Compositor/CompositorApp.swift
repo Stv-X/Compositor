@@ -135,11 +135,13 @@ struct CompositorApp: App {
                                     .configuredKeyboardShortcut("'").disabled(session.document == nil)
                                 Toggle("Guides", isOn: Binding(get: { session.showsGuides }, set: { session.showsGuides = $0 }))
                                     .configuredKeyboardShortcut(";").disabled(session.document == nil)
+                                Toggle("Rulers", isOn: Binding(get: { session.showsRulers }, set: { session.showsRulers = $0 }))
+                                    .configuredKeyboardShortcut("r").disabled(session.document == nil)
+                                Toggle("Status Bar", isOn: Binding(get: { session.showsStatusBar }, set: { session.showsStatusBar = $0 }))
+                                    .configuredKeyboardShortcut("/")
                             }
                             Button("Grid Settings…") { Task { await applicationDelegate.projects.gridSettings() } }
                                 .disabled(session.document == nil)
-                            Toggle("Rulers", isOn: Binding(get: { session.showsRulers }, set: { session.showsRulers = $0 }))
-                                .configuredKeyboardShortcut("r").disabled(session.document == nil)
                             Divider()
                             Toggle("Snap", isOn: Binding(get: { session.snapEnabled }, set: { session.snapEnabled = $0 }))
                                 .configuredKeyboardShortcut(";", modifiers: [.command, .shift]).disabled(session.document == nil)
